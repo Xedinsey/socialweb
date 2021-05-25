@@ -23,5 +23,13 @@
 }
 
 .message {
-    padding: 10px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    margin: 10px;
+}
+img {
+    width: 50px;
+    border-radius: 30%;
+    margin-left: auto;
 }
