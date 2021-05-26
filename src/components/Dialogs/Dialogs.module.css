@@ -33,3 +33,9 @@
     border-radius: 30%;
     margin-left: auto;
 }
+.textarea {
+    margin: 10px;
+}
+.button {
+    margin: 10px;
+}
