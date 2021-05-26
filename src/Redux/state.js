@@ -23,6 +23,8 @@ let state = {
             {id: 6, name: "Sacha"},
             {id: 7, name: "Max"},
         ],
+
     },
+    sidebar: {},
 }
 export default state;
