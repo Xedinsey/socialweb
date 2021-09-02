@@ -2,7 +2,8 @@ import React from "react";
 import classes from "./Dialogs.module.css";
 import DialogsItem from "./DialogItem/DialogsItem";
 import Message from "./Message/Message";
-import { addMessageActionCreator, updateNewMessageActionCreator } from "../../Redux/state";
+import {addMessageActionCreator, updateNewMessageActionCreator} from "../../Redux/dialogsReducer";
+
 
 const Dialogs = (props) => {
     let dialogsElement = props.dialogsPage.dialogs.map(dialog => <DialogsItem name={dialog.name} id={dialog.id}/>);
@@ -27,6 +28,7 @@ const Dialogs = (props) => {
             <div>
                 <div className={classes.textarea}>
                     <textarea
+                        placeholder="Введите текст..."
                         ref={newMessage}
                         onChange={onMessageChange}
                         value={props.dialogsPage.newMessageText}
