@@ -1,7 +1,16 @@
 .header {
   grid-area: h;
-  background-color: green;
+  background-color: #1b6dd1;
+  border-radius: 5px;
 }
 .header img {
   width: 60px;
+}
+
+.header span {
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  margin: auto;
+  position: absolute;
 }
