@@ -1,49 +1,15 @@
 import React from 'react';
+import * as axios from "axios";
+import userPhoto from '../../assets/images/user_image_mock.png';
 
 let Users = (props) => {
     if (props.users.length === 0) {
-        props.setUsers([{
-            id: 1,
-            photoUrl: 'https://www.ejin.ru/wp-content/uploads/2018/10/crew4_1024.png',
-            followed: false,
-            fullname: 'Dmitry',
-            status: 'I am a boss',
-            location: 'Russia'
-        },
-            {
-                id: 2,
-                photoUrl: 'https://www.ejin.ru/wp-content/uploads/2018/10/crew4_1024.png',
-                followed: true,
-                fullname: 'Alex',
-                status: 'I am a boss',
-                location: 'Russia'
-            },
-            {
-                id: 3,
-                photoUrl: 'https://www.ejin.ru/wp-content/uploads/2018/10/crew4_1024.png',
-                followed: false,
-                fullname: 'Sergey',
-                status: 'I am a boss',
-                location: 'Russia'
-            },
-            {
-                id: 4,
-                photoUrl: 'https://www.ejin.ru/wp-content/uploads/2018/10/crew4_1024.png',
-                followed: true,
-                fullname: 'Natasha',
-                status: 'I am a boss',
-                location: 'Russia'
-            },
-            {
-                id: 5,
-                photoUrl: 'https://www.ejin.ru/wp-content/uploads/2018/10/crew4_1024.png',
-                followed: false,
-                fullname: 'Olga',
-                status: 'I am a boss',
-                location: 'Russia'
-            },
-        ]);
+
+        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+            props.setUsers(response.data.items);
+        });
     }
+
 
 
     return <div>
@@ -57,7 +23,8 @@ let Users = (props) => {
             }}>
                 <span>
                     <div style={{marginTop: 5 + 'px'}}>
-                        <img src={u.photoUrl} alt="" style={{width: 40 + 'px'}}/>
+                        <img src={u.photos.small != null ? u.photos.small : userPhoto} alt=""
+                             style={{width: 150 + 'px'}}/>
                     </div>
                     <div>
                         {u.followed
@@ -72,12 +39,12 @@ let Users = (props) => {
                 </span>
                 <span>
                     <span>
-                        <div>{u.fullname}</div>
+                        <div>{u.name}</div>
                         <div>{u.status}</div>
                     </span>
                     <span>
-                        <div>{u.location.country}</div>
-                        <div>{u.location.city}</div>
+                        <div>{"u.location.country"}</div>
+                        <div>{"u.location.city"}</div>
                     </span>
                 </span>
             </div>)
