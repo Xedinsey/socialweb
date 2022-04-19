@@ -1,55 +1,59 @@
 import React from 'react';
 import * as axios from "axios";
 import userPhoto from '../../assets/images/user_image_mock.png';
+import {Card, Button, Container, Row, Col} from 'react-bootstrap';
+
 
 let Users = (props) => {
-    if (props.users.length === 0) {
+    let getUsers = () => {
+        if (props.users.length === 0) {
 
-        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
-            props.setUsers(response.data.items);
-        });
+            axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+                props.setUsers(response.data.items);
+            });
+        }
     }
 
 
+    return <>
+        <Button onClick={getUsers} style={{position: 'absolute', top: '50%', left: '50%', display: props.users.length === 0 ? 'block' : 'none' }}>Get Users</Button>
 
-    return <div>
-        {
-            props.users.map(u => <div key={u.id} style={{
-                margin: 20 + 'px',
-                borderRadius: 10 + 'px',
-                padding: 5 + 'px',
-                backgroundColor: '#ffffff',
-                width: '50%',
-            }}>
-                <span>
-                    <div style={{marginTop: 5 + 'px'}}>
-                        <img src={u.photos.small != null ? u.photos.small : userPhoto} alt=""
-                             style={{width: 150 + 'px'}}/>
-                    </div>
-                    <div>
-                        {u.followed
-                            ? <button onClick={() => {
-                                props.unfollow(u.id)
-                            }}>UnFollow</button>
-                            : <button onClick={() => {
-                                props.follow(u.id)
-                            }}>Follow</button>
-                        }
-                    </div>
-                </span>
-                <span>
-                    <span>
-                        <div>{u.name}</div>
-                        <div>{u.status}</div>
-                    </span>
-                    <span>
-                        <div>{"u.location.country"}</div>
-                        <div>{"u.location.city"}</div>
-                    </span>
-                </span>
-            </div>)
-        }
-    </div>
+        <Container style={{margin: '10px', padding: '5px', maxWidth: '800px', minWidth: '300px'}}>
+            <Row md={2} xs={1}>
+                {
+                    props.users.map(u =>
+
+                        <Col>
+                            <Card style={{width: '18rem', margin: '1rem'}}>
+                                <Card.Img variant="top" style={{
+                                    width: '10rem',
+                                    alignSelf: "center",
+                                    borderRadius: 100,
+                                    paddingTop: '10px'
+                                }} src={u.photos.small != null ? u.photos.small : userPhoto}/>
+                                <Card.Body>
+                                    <Card.Title style={{textAlign: "center"}}>{u.name}</Card.Title>
+                                    <Card className="Text">{u.status}</Card>
+                                    <Card className="Text">{"u.location.country"}</Card>
+                                    <Card className="Text">{"u.location.city"}</Card>
+                                    <div>
+                                        {u.followed
+                                            ? <Button variant="primary" onClick={() => {
+                                                props.unfollow(u.id)
+                                            }}>UnFollow</Button>
+                                            : <Button variant="primary" onClick={() => {
+                                                props.follow(u.id)
+                                            }}>Follow</Button>
+                                        }
+                                    </div>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    )
+                }
+            </Row>
+        </Container>
+    </>
 
 }
 export default Users;
