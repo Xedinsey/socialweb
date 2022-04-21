@@ -9,6 +9,7 @@ class Users extends React.Component {
     componentDidMount() {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
             this.props.setUsers(response.data.items);
+            this.props.setTotalUsersCount(response.data.totalCount)
         });
     }
 
@@ -31,9 +32,9 @@ class Users extends React.Component {
         return <>
             <div>
                 {pages.map(page => {
-                    return <Button className={this.props.currentPage === page && styles.selectedPage} onClick={(e) => {
+                    return <span className={this.props.currentPage === page && styles.selectedPage && styles.button} onClick={(e) => {
                         this.onPageChanged(page)
-                    }}>{page}</Button>
+                    }}>{page}</span>
                 })}
             </div>
             <Container style={{margin: '10px', padding: '5px', maxWidth: '800px', minWidth: '300px'}}>
