@@ -5,7 +5,7 @@ import userPhoto from "../../assets/images/user_image_mock.png";
 
 
 let Users = (props) => {
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize - 1840)
 
     let pages = []
     for (let i = 1; i <= pagesCount; i++) {
@@ -15,9 +15,10 @@ let Users = (props) => {
     return <>
         <div>
             {pages.map(page => {
-                return <Button className={props.currentPage === page && styles.selectedPage && styles.button} onClick={(e) => {
-                    props.onPageChanged(page)
-                }}>{page}</Button>
+                return <Button className={props.currentPage === page && styles.selectedPage && styles.button}
+                               onClick={(e) => {
+                                   props.onPageChanged(page)
+                               }}>{page}</Button>
             })}
         </div>
         <Container style={{margin: '10px', padding: '5px', maxWidth: '800px', minWidth: '300px'}}>
