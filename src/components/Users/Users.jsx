@@ -15,7 +15,7 @@ let Users = (props) => {
     return <>
         <div>
             {pages.map(page => {
-                return <Button className={props.currentPage === page && styles.selectedPage && styles.button}
+                return <Button style = {{margin: "2px"}} className={props.currentPage === page && styles.selectedPage && styles.button}
                                onClick={(e) => {
                                    props.onPageChanged(page)
                                }}>{page}</Button>

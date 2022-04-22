@@ -7,8 +7,20 @@
 .item a {
     color: #2a5885;
     text-decoration: none;
+    display: flex;
+    justify-content: left;
+    padding: 5px 10px;
+    margin: 2px;
+    font-weight: bold;
 }
 
 .item a.active {
-    color: gold;
+    color: #2a5885;
+    background-color: white;
+    border-radius: 5px;
+}
+.item a:hover {
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
 }
