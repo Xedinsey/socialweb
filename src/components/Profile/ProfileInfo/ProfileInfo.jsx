@@ -13,11 +13,11 @@ const ProfileInfo = (props) => {
             <div>
                 <img
                     src='https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&h=350'
-                    alt="image" />
+                    alt="обои" />
             </div>
             <div className={classes.descriptionBlock}>
                 <div>
-                    <img src={props.profile.photos.large} alt="photo"/>
+                    <img src={props.profile.photos.large} alt="аватарка"/>
                 </div>
                 <div>{props.profile.fullName}</div>
                 <div>Статус:{props.profile.lookingForAJob ? ' В поиске работы' : null}</div>

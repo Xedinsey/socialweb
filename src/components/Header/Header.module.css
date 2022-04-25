@@ -14,3 +14,15 @@
   margin-left: 10px;
   position: absolute;
 }
+
+.login__block {
+  float: right;
+  background-color: #2a5885;
+  border-radius: 5px;
+
+}
+.login__block:hover {
+  background-color: white;
+  border-radius: 5px;
+
+}
