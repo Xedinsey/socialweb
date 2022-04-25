@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Users.module.css";
 import {Button, Card, Col, Container, Row} from "react-bootstrap";
 import userPhoto from "../../assets/images/user_image_mock.png";
+import {NavLink} from "react-router-dom";
 
 
 let Users = (props) => {
@@ -28,18 +29,18 @@ let Users = (props) => {
 
                         <Col>
                             <Card style={{width: '18rem', margin: '1rem'}}>
-                                <Card.Img variant="top" style={{
+                                <NavLink to={'/profile/' + user.id} style={{
                                     width: '10rem',
                                     alignSelf: "center",
-                                    borderRadius: 100,
                                     paddingTop: '10px'
-                                }} src={user.photos.small != null ? user.photos.small : userPhoto}/>
+                                }}>
+                                    <Card.Img style={{borderRadius: 100}}
+                                        variant="top" src={user.photos.small != null ? user.photos.small : userPhoto}/>
+                                </NavLink>
                                 <Card.Body>
                                     <Card.Title style={{textAlign: "center"}}>{user.name}</Card.Title>
-                                    <Card.Text>{user.status}<br/>
-                                        {"u.location.country"}<br/>
-                                        {"u.location.city"}
-                                    </Card.Text>
+                                    {user.status ? <Card.Text style={{textAlign: 'center'}}>{user.status}</Card.Text> : undefined }
+                                    <Card.Text>{"u.location.country"}<br/>{"u.location.city"}</Card.Text>
                                     <div className="mt-3" style={{display: 'flex', justifyContent: 'center'}}>
                                         {user.followed
                                             ? <Button variant="primary" onClick={() => {
