@@ -19,9 +19,9 @@ const ProfileInfo = (props) => {
                 <div>
                     <img src={props.profile.photos.large} alt="photo"/>
                 </div>
-                <div>{props.profile.lookingForAJob}</div>
-                <div>{props.profile.lookingForAJobDescription}</div>
                 <div>{props.profile.fullName}</div>
+                <div>Статус:{props.profile.lookingForAJob ? ' В поиске работы' : null}</div>
+                <div>{props.profile.lookingForAJobDescription}</div>
             </div>
         </div>
     )
