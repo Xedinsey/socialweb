@@ -36,10 +36,11 @@ let Users = (props) => {
                                 }} src={user.photos.small != null ? user.photos.small : userPhoto}/>
                                 <Card.Body>
                                     <Card.Title style={{textAlign: "center"}}>{user.name}</Card.Title>
-                                    <Card className="Text">{user.status}</Card>
-                                    <Card className="Text">{"u.location.country"}</Card>
-                                    <Card className="Text">{"u.location.city"}</Card>
-                                    <div>
+                                    <Card.Text>{user.status}<br/>
+                                        {"u.location.country"}<br/>
+                                        {"u.location.city"}
+                                    </Card.Text>
+                                    <div className="mt-3" style={{display: 'flex', justifyContent: 'center'}}>
                                         {user.followed
                                             ? <Button variant="primary" onClick={() => {
                                                 props.unfollow(user.id)
