@@ -17,7 +17,8 @@ let Users = (props) => {
     return <>
         <div>
             {pages.map(page => {
-                return <Button style = {{margin: "2px"}} className={props.currentPage === page && styles.selectedPage && styles.button}
+                return <Button style={{margin: "2px"}}
+                               className={props.currentPage === page && styles.selectedPage && styles.button}
                                onClick={(e) => {
                                    props.onPageChanged(page)
                                }}>{page}</Button>
@@ -36,38 +37,46 @@ let Users = (props) => {
                                     paddingTop: '10px'
                                 }}>
                                     <Card.Img style={{borderRadius: 100}}
-                                        variant="top" src={user.photos.small != null ? user.photos.small : userPhoto}/>
+                                              variant="top"
+                                              src={user.photos.small != null ? user.photos.small : userPhoto}/>
                                 </NavLink>
                                 <Card.Body>
                                     <Card.Title style={{textAlign: "center"}}>{user.name}</Card.Title>
-                                    {user.status ? <Card.Text style={{textAlign: 'center'}}>{user.status}</Card.Text> : undefined }
+                                    {user.status ?
+                                        <Card.Text style={{textAlign: 'center'}}>{user.status}</Card.Text> : undefined}
                                     <Card.Text>{"u.location.country"}<br/>{"u.location.city"}</Card.Text>
                                     <div className="mt-3" style={{display: 'flex', justifyContent: 'center'}}>
                                         {user.followed
-                                            ? <Button variant="primary" onClick={() => {
+                                            ? <Button disabled={props.followingInProcess.some(id => id === user.id)}
+                                                      variant="primary" onClick={() => {
+                                                props.toggleIsFollowingProcess(true, user.id);
                                                 axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
                                                     withCredentials: true,
                                                     headers: {
-                                                        "API-KEY" : "a24018ac-30ad-42f2-8018-64e42cb9a10a"
+                                                        "API-KEY": "a24018ac-30ad-42f2-8018-64e42cb9a10a"
                                                     }
                                                 })
                                                     .then(response => {
                                                         if (response.data.resultCode === 0) {
                                                             props.unfollow(user.id);
                                                         }
+                                                        props.toggleIsFollowingProcess(false, user.id);
                                                     });
                                             }}>UnFollow</Button>
-                                            : <Button variant="primary" onClick={() => {
-                                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {},{
+                                            : <Button disabled={props.followingInProcess.some(id => id === user.id)}
+                                                      variant="primary" onClick={() => {
+                                                props.toggleIsFollowingProcess(true, user.id);
+                                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
                                                     withCredentials: true,
                                                     headers: {
-                                                        "API-KEY" : "a24018ac-30ad-42f2-8018-64e42cb9a10a"
+                                                        "API-KEY": "a24018ac-30ad-42f2-8018-64e42cb9a10a"
                                                     }
                                                 })
                                                     .then(response => {
                                                         if (response.data.resultCode === 0) {
                                                             props.follow(user.id);
                                                         }
+                                                        props.toggleIsFollowingProcess(false, user.id);
                                                     });
                                             }}>Follow</Button>
                                         }
