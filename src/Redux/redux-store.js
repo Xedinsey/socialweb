@@ -4,6 +4,7 @@ import dialogsReducer from "./dialogsReducer";
 import sidebarReducer from "./sidebarReducer";
 import usersReducer from "./usersReducer";
 import authReducer from "./authReducer";
+import {thunk as thunkMiddleware} from "redux-thunk";
 
 let reducers = combineReducers({
     profilePage: profileReducer,
