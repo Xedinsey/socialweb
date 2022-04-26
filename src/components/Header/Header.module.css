@@ -41,3 +41,16 @@
 .login__block:hover a {
   color: #1b6dd1;
 }
+.login_name {
+  display: flex;
+  margin: 5px;
+  float: right;
+  text-align: center;
+  height: 60px;
+
+}
+.login_name div {
+  margin-top: 12px;
+  font-weight: bold;
+  color: white;
+}

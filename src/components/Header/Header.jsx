@@ -7,11 +7,11 @@ const Header = (props) => {
     return <header className={classes.header}>
         <img src={img} alt="лого"/>
         <span>Onk-Onk</span>
-        <div className={classes.login__block}>
-            {props.isAuth ? props.login
-                : <NavLink to={'/login'}>Login</NavLink>
-            }
-        </div>
+        {props.isAuth
+            ? <div className={classes.login_name}><div>{props.login}</div></div>
+            : <div className={classes.login__block}><NavLink to={'/login'}>Login</NavLink></div>
+        }
+
     </header>
 }
 

@@ -29,7 +29,7 @@ let Users = (props) => {
                     props.users.map(user =>
 
                         <Col>
-                            <Card style={{width: '18rem', margin: '1rem'}}>
+                            <Card style={{width: '18rem', margin: '1rem', boxShadow: '2px 2px 2px gray'}}>
                                 <NavLink to={'/profile/' + user.id} style={{
                                     width: '10rem',
                                     alignSelf: "center",
