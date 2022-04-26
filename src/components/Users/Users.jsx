@@ -3,6 +3,7 @@ import styles from "./Users.module.css";
 import {Button, Card, Col, Container, Row} from "react-bootstrap";
 import userPhoto from "../../assets/images/user_image_mock.png";
 import {NavLink} from "react-router-dom";
+import * as axios from "axios";
 
 
 let Users = (props) => {
@@ -44,10 +45,24 @@ let Users = (props) => {
                                     <div className="mt-3" style={{display: 'flex', justifyContent: 'center'}}>
                                         {user.followed
                                             ? <Button variant="primary" onClick={() => {
+                                                /*axios.post(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+                                                    .then(response => {
+                                                        this.props.toggleIsFetching(false)
+                                                        this.props.setUsers(response.data.items);
+                                                        this.props.setTotalUsersCount(response.data.totalCount)
+                                                    });*/
                                                 props.unfollow(user.id)
+
                                             }}>UnFollow</Button>
                                             : <Button variant="primary" onClick={() => {
+                                                /*axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`)
+                                                    .then(response => {
+                                                        this.props.toggleIsFetching(false)
+                                                        this.props.setUsers(response.data.items);
+                                                        this.props.setTotalUsersCount(response.data.totalCount)
+                                                    });*/
                                                 props.follow(user.id)
+
                                             }}>Follow</Button>
                                         }
                                     </div>
