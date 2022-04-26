@@ -16,13 +16,28 @@
 }
 
 .login__block {
+  display: flex;
   float: right;
-  background-color: #2a5885;
+  background-color: #1b6dd1;
   border-radius: 5px;
-
+  height: 60px;
+  width: 120px;
 }
 .login__block:hover {
   background-color: white;
   border-radius: 5px;
-
+  box-sizing: border-box;
+}
+.login__block a {
+  text-decoration: none;
+  margin: auto;
+  font-weight: bold;
+  color: white;
+  height: 60px;
+  width: 120px;
+  text-align: center;
+  padding-top: 16px;
+}
+.login__block:hover a {
+  color: #1b6dd1;
 }
