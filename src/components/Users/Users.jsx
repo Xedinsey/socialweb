@@ -45,24 +45,30 @@ let Users = (props) => {
                                     <div className="mt-3" style={{display: 'flex', justifyContent: 'center'}}>
                                         {user.followed
                                             ? <Button variant="primary" onClick={() => {
-                                                /*axios.post(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+                                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
+                                                    withCredentials: true,
+                                                    headers: {
+                                                        "API-KEY" : "a24018ac-30ad-42f2-8018-64e42cb9a10a"
+                                                    }
+                                                })
                                                     .then(response => {
-                                                        this.props.toggleIsFetching(false)
-                                                        this.props.setUsers(response.data.items);
-                                                        this.props.setTotalUsersCount(response.data.totalCount)
-                                                    });*/
-                                                props.unfollow(user.id)
-
+                                                        if (response.data.resultCode === 0) {
+                                                            props.unfollow(user.id);
+                                                        }
+                                                    });
                                             }}>UnFollow</Button>
                                             : <Button variant="primary" onClick={() => {
-                                                /*axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`)
+                                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {},{
+                                                    withCredentials: true,
+                                                    headers: {
+                                                        "API-KEY" : "a24018ac-30ad-42f2-8018-64e42cb9a10a"
+                                                    }
+                                                })
                                                     .then(response => {
-                                                        this.props.toggleIsFetching(false)
-                                                        this.props.setUsers(response.data.items);
-                                                        this.props.setTotalUsersCount(response.data.totalCount)
-                                                    });*/
-                                                props.follow(user.id)
-
+                                                        if (response.data.resultCode === 0) {
+                                                            props.follow(user.id);
+                                                        }
+                                                    });
                                             }}>Follow</Button>
                                         }
                                     </div>
