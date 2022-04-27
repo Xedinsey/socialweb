@@ -3,7 +3,6 @@ import styles from "./Users.module.css";
 import {Button, Card, Col, Container, Row} from "react-bootstrap";
 import userPhoto from "../../assets/images/user_image_mock.png";
 import {NavLink} from "react-router-dom";
-import * as axios from "axios";
 
 
 let Users = (props) => {
@@ -48,37 +47,9 @@ let Users = (props) => {
                                     <div className="mt-3" style={{display: 'flex', justifyContent: 'center'}}>
                                         {user.followed
                                             ? <Button disabled={props.followingInProcess.some(id => id === user.id)}
-                                                      variant="primary" onClick={() => {
-                                                props.toggleIsFollowingProcess(true, user.id);
-                                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
-                                                    withCredentials: true,
-                                                    headers: {
-                                                        "API-KEY": "a24018ac-30ad-42f2-8018-64e42cb9a10a"
-                                                    }
-                                                })
-                                                    .then(response => {
-                                                        if (response.data.resultCode === 0) {
-                                                            props.unfollow(user.id);
-                                                        }
-                                                        props.toggleIsFollowingProcess(false, user.id);
-                                                    });
-                                            }}>UnFollow</Button>
+                                                      variant="primary" onClick={() => {props.unfollow(user.id)}}>UnFollow</Button>
                                             : <Button disabled={props.followingInProcess.some(id => id === user.id)}
-                                                      variant="primary" onClick={() => {
-                                                props.toggleIsFollowingProcess(true, user.id);
-                                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
-                                                    withCredentials: true,
-                                                    headers: {
-                                                        "API-KEY": "a24018ac-30ad-42f2-8018-64e42cb9a10a"
-                                                    }
-                                                })
-                                                    .then(response => {
-                                                        if (response.data.resultCode === 0) {
-                                                            props.follow(user.id);
-                                                        }
-                                                        props.toggleIsFollowingProcess(false, user.id);
-                                                    });
-                                            }}>Follow</Button>
+                                                      variant="primary" onClick={() => {props.follow(user.id)}}>Follow</Button>
                                         }
                                     </div>
                                 </Card.Body>
