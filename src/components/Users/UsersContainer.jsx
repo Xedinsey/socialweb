@@ -9,7 +9,7 @@ import {
 import Users from "./Users";
 import Preloader from "../Common/Preloader";
 import {withAuthRedirect} from "../hoc/withAuthRedirect";
-import Dialogs from "../Dialogs/Dialogs";
+import {compose} from "redux";
 
 
 
@@ -53,12 +53,14 @@ let mapStateToProps = (state) => {
     }
 };
 
-let AuthRedirectComponent = withAuthRedirect(UsersContainer);
+export default compose(
+    connect(mapStateToProps, {
+        follow,
+        unfollow,
+        setCurrentPage,
+        toggleIsFollowingProcess,
+        getUsers
+    }),
+    withAuthRedirect
+)(UsersContainer)
 
-export default connect(mapStateToProps, {
-    follow,
-    unfollow,
-    setCurrentPage,
-    toggleIsFollowingProcess,
-    getUsers
-})(AuthRedirectComponent);

@@ -17,7 +17,8 @@
 
 .login__block {
   display: flex;
-  float: right;
+  align-self: flex-end;
+  justify-content: flex-end;
   background-color: #1b6dd1;
   border-radius: 5px;
   height: 60px;
