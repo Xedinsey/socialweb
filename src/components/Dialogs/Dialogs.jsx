@@ -10,7 +10,7 @@ const Dialogs = (props) => {
 
     let dialogsElement = props.dialogsPage.dialogs.map(dialog => <DialogsItem name={dialog.name} key={dialog.id}
                                                                               id={dialog.id}/>);
-    let messagesElements = props.dialogsPage.messages.map(message => <Message message={message.message}/>);
+    let messagesElements = props.dialogsPage.messages.map(message => <Message message={message.message} key={message.id}/>);
 
     let newMessage = React.createRef();
 
@@ -30,7 +30,7 @@ const Dialogs = (props) => {
     return (
         <>
             <div className={classes.dialogs}>
-                <div className={classes.dialogsItems} activeClassName={classes.active}>
+                <div className={`${classes.dialogsItems} ${classes.active}`}>
                     {dialogsElement}
                 </div>
                 <div className={classes.messages}>
